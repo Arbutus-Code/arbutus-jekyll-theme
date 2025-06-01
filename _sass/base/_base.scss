@@ -1,0 +1,65 @@
+@use "../utils/variables" as vars;
+@use "../utils/functions" as fn;
+@use "../utils/mixins" as mix;
+
+// Base Styles
+
+body {
+  background-color: vars.$color-white;
+  color: vars.$color-gray-900;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: fn.spacing(12);
+  justify-content: space-around;
+  align-items: center;
+  margin-top: calc(vars.$header-height + 1rem);
+  margin-bottom: calc(vars.$header-height + 1rem);
+}
+
+.container {
+  @include mix.container;
+}
+
+.section {
+  padding: fn.spacing(12) 0;
+
+  @include mix.breakpoint('sm') {
+    padding: fn.spacing(12) 0;
+  }
+
+  &--sm {
+    padding: fn.spacing(8) 0;
+  }
+
+  &--lg {
+    padding: fn.spacing(12) 0;
+
+    @include mix.breakpoint('sm') {
+      padding: fn.spacing(12) 0;
+    }
+  }
+}
+
+// Utility Classes
+.text {
+  &-center { text-align: center; }
+  &-left { text-align: left; }
+  &-right { text-align: right; }
+}
+
+.mb {
+  &-2 { margin-bottom: fn.spacing(2); }
+  &-4 { margin-bottom: fn.spacing(4); }
+  &-6 { margin-bottom: fn.spacing(6); }
+  &-8 { margin-bottom: fn.spacing(8); }
+}
+
+.mt {
+  &-2 { margin-top: fn.spacing(2); }
+  &-4 { margin-top: fn.spacing(4); }
+  &-6 { margin-top: fn.spacing(6); }
+  &-8 { margin-top: fn.spacing(8); }
+}

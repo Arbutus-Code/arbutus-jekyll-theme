@@ -1,0 +1,160 @@
+@use "../utils/variables" as vars;
+@use "../utils/functions" as fn;
+@use "../utils/mixins" as mix;
+
+// Footer Styles
+
+.footer {
+  background-color: vars.$color-gray-900;
+  color: vars.$color-white;
+  padding: fn.spacing(12) 0;
+
+  // Container
+  &__container {
+    @include mix.container;
+  }
+
+  // Grid
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: fn.spacing(8);
+
+    @include mix.breakpoint('md') {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  // Brand & Contact Section
+  &__brand-contact {
+    display: flex;
+    flex-direction: column;
+    gap: fn.spacing(4);
+    align-items: flex-start;
+    @include mix.breakpoint('md') {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: fn.spacing(6);
+    }
+  }
+
+  &__logo {
+    height: 48px;
+    width: auto;
+    margin-bottom: 0;
+    @include mix.breakpoint('md') {
+      height: 56px;
+    }
+  }
+
+  &__brand-info {
+    display: flex;
+    flex-direction: column;
+    gap: fn.spacing(2);
+  }
+
+  &__title {
+    font-weight: vars.$font-weight-bold;
+    font-size: 1.25rem;
+    margin-bottom: fn.spacing(1);
+    color: vars.$color-white;
+  }
+
+  &__contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: fn.spacing(1);
+  }
+
+  &__contact-item {
+    color: vars.$color-gray-400;
+    font-size: 0.95rem;
+    a {
+      color: inherit;
+      text-decoration: underline dotted;
+      &:hover,
+      &:focus {
+        color: vars.$color-white;
+        text-decoration: underline solid;
+      }
+    }
+  }
+
+  // Navigation (Quick Links)
+  &__nav {
+    margin-bottom: fn.spacing(4);
+    @include mix.breakpoint('md') {
+      margin-bottom: 0;
+    }
+    &-title {
+      font-weight: vars.$font-weight-bold;
+      margin-bottom: fn.spacing(3);
+      font-size: 1.1rem;
+      color: vars.$color-white;
+    }
+    &-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: fn.spacing(1);
+    }
+    &-item {
+      margin-bottom: 0;
+    }
+    &-link {
+      color: vars.$color-gray-400;
+      @include mix.transition(color);
+
+      &:hover {
+        color: vars.$color-white;
+      }
+    }
+  }
+
+  // Bottom
+  &__bottom {
+    margin-top: fn.spacing(10);
+    padding-top: fn.spacing(5);
+    border-top: 1px solid vars.$color-gray-800;
+    @include mix.flex(column, center, center);
+    text-align: center;
+    gap: fn.spacing(3);
+    @include mix.breakpoint('md') {
+      @include mix.flex(row, space-between, center);
+      text-align: left;
+      gap: fn.spacing(6);
+    }
+  }
+
+  &__copyright {
+    color: vars.$color-gray-400;
+    margin-bottom: 0;
+    font-size: 0.95rem;
+    flex-basis: 25%;
+  }
+
+  &__social  {
+    .icon {
+      width: 1.5rem;
+      height: 1.5rem;
+      &:hover,
+      &:focus {
+        color: vars.$color-white;
+      }
+    }
+  }
+  .social-links {
+    &__link {
+      &:hover,
+      &:focus {
+        color: vars.$color-white;
+      }
+    }
+  }
+}
+

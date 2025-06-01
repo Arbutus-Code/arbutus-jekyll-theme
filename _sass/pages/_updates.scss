@@ -1,0 +1,112 @@
+@use "sass:color";
+@use "../utils/variables" as vars;
+@use "../utils/functions" as fn;
+@use "../utils/mixins" as mix;
+
+.updates-feed {
+  margin: 0 auto;
+  width: 100%;
+  @include mix.breakpoint('sm') {
+    width: 80%;
+  }
+}
+
+.tags-nav {
+  margin-bottom: 2rem;
+}
+
+.post-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.post-card {
+  background: vars.$color-white;
+  border-radius: vars.$border-radius-lg;
+  border: none;
+  border-bottom: 1px solid vars.$color-gray-200;
+  box-shadow: 0 4px 12px -8px vars.$color-gray-300;
+  padding: 2rem 2.5rem;
+  width: 100%;
+  transition: box-shadow 0.2s, transform 0.2s, border-bottom-color 0.2s;
+  position: relative;
+  display: block;
+}
+
+.post-card:hover {
+  box-shadow: vars.$shadow-xl;
+  transform: translateY(-4px) scale(1.01);
+  border-color: vars.$color-primary-light;
+}
+
+.post-card h2 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 2rem;
+}
+
+.post-card .meta {
+  color: vars.$color-gray-500;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.post-card .excerpt {
+  margin-bottom: 1.25rem;
+  font-size: 1.1rem;
+}
+
+.post-card .post-tags {
+  margin-top: 1.25rem;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+}
+
+.post-card .post-tags li {
+  margin: 0;
+}
+
+.tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+.tag-link {
+  display: inline-block;
+  padding: 0.35em 0.9em;
+  border-radius: 2em;
+  background: none;
+  color: vars.$color-primary;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+  border: 1px solid transparent;
+}
+
+.tag-link.active,
+.tag-link:focus,
+.tag-link:hover {
+  background: vars.$color-primary;
+  color: #fff;
+  border-color: vars.$color-primary;
+  outline: none;
+}
+
+@media (max-width: 600px) {
+  .tags-list {
+    gap: 0.5rem 0.5rem;
+    font-size: 0.95rem;
+  }
+}

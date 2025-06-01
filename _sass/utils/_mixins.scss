@@ -1,0 +1,80 @@
+@use "sass:map";
+@use "sass:list";
+@use "variables" as vars;
+@use "functions" as fn;
+
+// Media Queries
+@mixin breakpoint($breakpoint) {
+  @if map.has-key(vars.$breakpoints, $breakpoint) {
+    @media (min-width: map.get(vars.$breakpoints, $breakpoint)) {
+      @content;
+    }
+  } @else {
+    @warn "Invalid breakpoint: #{$breakpoint}. Available breakpoints are: #{map-keys(vars.$breakpoints)}";
+  }
+}
+
+// Container
+@mixin container {
+  width: 100%;
+  max-width: vars.$container-max-width;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: vars.$container-padding;
+  padding-right: vars.$container-padding;
+  display: flex;
+  flex-direction: column;
+  gap: fn.spacing(4);
+}
+
+// Typography
+@mixin heading($size) {
+  font-family: vars.$font-family-heading;
+  font-weight: vars.$font-weight-bold;
+  line-height: 1.2;
+
+  @if $size == 'h1' {
+    font-size: 3rem;
+  } @else if $size == 'h2' {
+    font-size: 2.25rem;
+  } @else if $size == 'h3' {
+    font-size: 1.875rem;
+  } @else if $size == 'h4' {
+    font-size: 1.5rem;
+  } @else if $size == 'h5' {
+    font-size: 1.25rem;
+  } @else if $size == 'h6' {
+    font-size: 1rem;
+  }
+}
+
+// Flexbox
+@mixin flex($direction: row, $justify: flex-start, $align: stretch, $wrap: nowrap) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  flex-wrap: $wrap;
+}
+
+// Grid
+@mixin grid($columns: 1, $gap: map.get(vars.$spacing-scale, 4)) {
+  display: grid;
+  grid-template-columns: repeat($columns, minmax(0, 1fr));
+  gap: $gap;
+}
+
+// Transitions
+@mixin transition($properties...) {
+  $transitions: ();
+  @each $property in $properties {
+    $transitions: list.append($transitions, $property 0.3s ease, $separator: comma);
+  }
+  transition: $transitions;
+}
+
+// Focus Ring
+@mixin focus-ring($color: vars.$color-primary, $offset: 2px) {
+  outline: 2px solid $color;  // Using the parameter $color, not the variable
+  outline-offset: $offset;
+}

@@ -1,0 +1,43 @@
+
+{% comment %}
+  Global Social Links Component
+  Usage:
+    {% include social-links.html socials=site.socials class="footer__social" show_titles=false %}
+  Params:
+    - socials: dictionary of platform:url (required)
+    - class: extra CSS classes (optional)
+    - show_titles: boolean/string, show platform titles (default: true)
+{% endcomment %}
+{% assign socials = include.socials | default: site.socials %}
+{% assign extra_class = include.class | default: '' %}
+{% assign show_titles_str = include.show_titles | downcase | strip %}
+{% if show_titles_str == blank %}
+  {% assign show_titles_bool = true %}
+{% elsif show_titles_str == "false" %}
+  {% assign show_titles_bool = false %}
+{% else %}
+  {% assign show_titles_bool = true %}
+{% endif %}
+{% if socials %}
+<section class="">
+  <div class="social-links {{ extra_class }}">
+    {% if include.heading %}
+      <h2 class="social-links__heading social-links__heading--center">{{ include.heading }}</h2>
+    {% endif %}
+    <div class="social-links__list">
+      {% for social in socials %}
+        <div class="social-links__item">
+          {% if show_titles_bool %}
+            <h4 class="social-links__title">{{ social.name }}</h4>
+          {% endif %}
+          <a class="social-links__link" href="{{ social.url }}" target="_blank" rel="noopener" aria-label="{{ social.name }}" title="{{ social.name }}: {{ social.url }}">
+            <svg class="icon" aria-hidden="true" focusable="false">
+              <use xlink:href="{{ '/assets/images/sprites/social-icon-sprite.svg#icon-' | append: social.icon | relative_url }}"></use>
+            </svg>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}

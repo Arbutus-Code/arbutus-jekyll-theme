@@ -1,0 +1,36 @@
+{% comment %}
+Team Members Component
+Parameters:
+- heading: (optional) Section heading
+- members: (required) Array of member objects:
+    - name: (required) Member name
+    - title: (optional) Member title
+    - image: (optional) Image URL (fallback: default avatar)
+    - bio: (optional) Short bio
+- show_images: (optional) Boolean, show member images (default: true)
+Usage: {% include team-members.html heading=... members=... %}
+{% endcomment %}
+{%- assign show_images = include.show_images | default: true -%}
+<section class="team-members container">
+  {%- if include.heading -%}
+    <h2>{{ include.heading }}</h2>
+  {%- endif -%}
+  <div class="team-members__list">
+    {%- for member in include.members -%}
+      <div class="team-member">
+        {%- if show_images and member.image -%}
+          <div class="team-member__avatar">
+            <img src="{{ member.image }}" alt="{{ member.name }}">
+          </div>
+        {%- endif -%}
+        <div class="team-member__info">
+          <span class="team-member__name">{{ member.name }}</span>
+          <span class="team-member__title">{{ member.title }}</span>
+          {%- if member.bio -%}
+            <p class="team-member__bio">{{ member.bio }}</p>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+</section>

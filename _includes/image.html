@@ -1,0 +1,38 @@
+{% comment %}
+Image Component
+Parameters:
+- src: (required) Image URL
+- alt: (optional) Alt text for image (defaults to empty string)
+- caption: (optional) Caption text for the image
+- width: (optional) Image width attribute
+- height: (optional) Image height attribute
+- class: (optional) Additional CSS classes
+- aria: (optional) Aria-label for accessibility
+Usage:
+  {% include image.html src="/path/to/image.jpg" alt="Description" caption="Optional caption" width="400" height="300" class="custom-class" aria="Descriptive label" %}
+{% endcomment %}
+
+{% assign img_alt = include.alt | default: '' %}
+{% if include.caption %}
+  <figure class="image-figure {{ include.class }}">
+    <img 
+      src="{{ include.src }}" 
+      alt="{{ img_alt | escape }}" 
+      loading="lazy"
+      {% if include.width %}width="{{ include.width }}"{% endif %}
+      {% if include.height %}height="{{ include.height }}"{% endif %}
+      {% if include.aria %}aria-label="{{ include.aria }}"{% endif %}
+    />
+    <figcaption class="image-caption">{{ include.caption }}</figcaption>
+  </figure>
+{% else %}
+  <img 
+    src="{{ include.src }}" 
+    alt="{{ img_alt | escape }}" 
+    loading="lazy"
+    {% if include.width %}width="{{ include.width }}"{% endif %}
+    {% if include.height %}height="{{ include.height }}"{% endif %}
+    class="{{ include.class }}"
+    {% if include.aria %}aria-label="{{ include.aria }}"{% endif %}
+  />
+{% endif %}

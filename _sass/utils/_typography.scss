@@ -1,0 +1,10 @@
+@use "utils/variables" as vars;
+@use "utils/mixins" as mix;
+
+/// Responsive font-size mixin
+/// Usage: @include responsive-type(1rem, 1.125rem, 1.25rem);
+@mixin responsive-type($mobile, $tablet, $desktop) {
+  font-size: $mobile;
+  @include mix.breakpoint('sm') { font-size: $tablet; }
+  @include mix.breakpoint('md') { font-size: $desktop; }
+}
