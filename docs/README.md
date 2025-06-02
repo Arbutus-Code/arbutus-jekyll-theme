@@ -17,14 +17,24 @@ A modern, brand-agnostic Jekyll theme designed for organizations and projects. F
 
 ## Quick Start
 
-### Use as a Remote Theme
+### Use as a Gem
 
-1. In your site's `_config.yml`, add:
+1. In your site's `Gemfile`, add:
 
-   ```yaml
-   remote_theme: Arbutus-Code/arbutus-jekyll-theme
-   plugins:
-     - jekyll-remote-theme
+   ```ruby
+   # For GitHub-hosted sites
+   gem "arbutus-theme", github: "Arbutus-Code/arbutus-jekyll-theme", branch: "main"
+
+   # For Ruby 3.4+ compatibility
+   gem "base64"
+   gem "bigdecimal"
+   ```
+
+   For local development with a local copy of the theme:
+
+   ```ruby
+   # Assuming the theme is in a sibling directory
+   gem "arbutus-theme", path: "../arbutus-jekyll-theme"
    ```
 
 2. Add a `_sass/_brand.scss` file to your site with your color palette:
