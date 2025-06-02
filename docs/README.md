@@ -7,8 +7,9 @@ A modern, brand-agnostic Jekyll theme designed for organizations and projects. F
 ## Features
 - Multiple page and post templates
 - Customizable brand color palette
-- Accessible and responsive layout
+- Accessible and responsive layout with consistent typography
 - Flexible navigation and content blocks
+- Separate header and footer logos
 - Includes error pages (404, 500)
 
 ---
@@ -67,8 +68,10 @@ A modern, brand-agnostic Jekyll theme designed for organizations and projects. F
 ```yaml
 title: My Site
 email: info@example.com
-description: >-
+description: >
   A modern Jekyll site using the Arbutus theme.
+logo: assets/images/logo.svg
+footer_logo: assets/images/logo-white.svg  # Optional, falls back to logo if not specified
 baseurl: ""
 url: "https://yoursite.com"
 remote_theme: Arbutus-Code/arbutus-jekyll-theme
@@ -76,6 +79,10 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-remote-theme
+contact:  # Optional contact information for footer
+  address: "123 Main St, City, Country"
+  email: "info@example.com"
+  phone: "+1 555-555-5555"
 ```
 
 ---
