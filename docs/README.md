@@ -5,6 +5,7 @@ A modern, brand-agnostic Jekyll theme designed for organizations and projects. F
 ---
 
 ## Features
+
 - Multiple page and post templates
 - Customizable brand color palette
 - Accessible and responsive layout with consistent typography
@@ -19,39 +20,51 @@ A modern, brand-agnostic Jekyll theme designed for organizations and projects. F
 ### Use as a Remote Theme
 
 1. In your site's `_config.yml`, add:
+
    ```yaml
    remote_theme: Arbutus-Code/arbutus-jekyll-theme
    plugins:
      - jekyll-remote-theme
    ```
+
 2. Add a `_sass/_brand.scss` file to your site with your color palette:
+
    ```scss
    $color-primary: #EE3B43 !default;
    $color-primary-dark: #C1282D !default;
    $color-primary-light: #F5B3B5 !default;
    $color-accent-dark: #4B2E83 !default;
    ```
+
    **All four variables are required for the theme to compile.**
 
 3. (Optional) Add a `Gemfile` to your site for local development:
+
    ```ruby
    source "https://rubygems.org"
    gem "github-pages", group: :jekyll_plugins
    gem "jekyll-remote-theme"
+   gem "base64"
+   gem "bigdecimal"
    ```
 
 ### Local Development
 
 1. Clone this repo:
+
    ```sh
    git clone https://github.com/Arbutus-Code/arbutus-jekyll-theme.git
    cd arbutus-jekyll-theme
    ```
+
 2. Install dependencies:
+
    ```sh
    bundle install
    ```
+
 3. Serve locally:
+
    ```sh
    bundle exec jekyll serve
    ```
@@ -65,6 +78,7 @@ A modern, brand-agnostic Jekyll theme designed for organizations and projects. F
 - Add your site title, description, and other metadata in `_config.yml`.
 
 ### Example `_config.yml`
+
 ```yaml
 title: My Site
 email: info@example.com
@@ -113,7 +127,7 @@ cards:
 
 Just set `media_type: icon` and provide the `icon` field; the theme takes care of rendering the SVG.
 
-For a full list of available icons and detailed usage instructions, see the [Heroicon Documentation](../scripts/heroicon_docs.md).
+For a full list of available icons and detailed usage instructions, see the [Heroicons Documentation](../scripts/heroicon_docs.md).
 
 ---
 
