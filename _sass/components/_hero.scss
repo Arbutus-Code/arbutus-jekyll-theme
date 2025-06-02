@@ -49,6 +49,7 @@
   }
 
   &__subtitle {
+    font-size: vars.$font-size-base;
     line-height: 1.6;
     margin-bottom: fn.spacing(6);
     color: color.scale(vars.$color-white, $alpha: -10%);

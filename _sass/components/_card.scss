@@ -10,14 +10,14 @@
   gap: fn.spacing(6);
   width: 100%;
 
-  @include mix.breakpoint('md') {
+  @include mix.breakpoint("md") {
     grid-template-columns: repeat(2, 1fr);
   }
-  @include mix.breakpoint('lg') {
+  @include mix.breakpoint("lg") {
     grid-template-columns: repeat(3, 1fr);
     gap: fn.spacing(7);
   }
-  @include mix.breakpoint('xl') {
+  @include mix.breakpoint("xl") {
     gap: fn.spacing(8);
   }
 }
@@ -81,7 +81,8 @@
       overflow: hidden;
       width: 3rem;
       height: 3rem;
-      img, svg {
+      img,
+      svg {
         width: 100%;
         height: 100%;
         object-fit: contain;
@@ -91,7 +92,7 @@
       }
       svg {
         stroke: vars.$color-primary;
-fill: none;
+        fill: none;
       }
     }
   }
@@ -126,6 +127,7 @@ fill: none;
     flex: 1 1 auto;
     margin-bottom: fn.spacing(3);
     color: vars.$color-gray-700;
+    font-size: vars.$font-size-base;
     text-align: center;
   }
   .button {

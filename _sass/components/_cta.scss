@@ -13,7 +13,7 @@
   max-width: 75%;
   margin: 0 auto;
 
-  @include mix.breakpoint('lg') {
+  @include mix.breakpoint("lg") {
     max-width: 80%;
   }
 }
@@ -28,7 +28,7 @@
     border-radius: vars.$border-radius-lg;
     box-shadow: vars.$shadow-lg;
 
-    @include mix.breakpoint('md') {
+    @include mix.breakpoint("md") {
       flex-direction: column;
       text-align: center;
       padding: fn.spacing(4);
@@ -58,6 +58,7 @@
   &__description {
     margin-bottom: fn.spacing(6);
     color: vars.$color-gray-600;
+    font-size: vars.$font-size-base;
   }
 
   &__media {
@@ -74,7 +75,7 @@
       }
     }
 
-    @include mix.breakpoint('md') {
+    @include mix.breakpoint("md") {
       width: 100%;
       order: -1;
     }
@@ -90,7 +91,7 @@
     justify-content: center;
   }
 
-  @include mix.breakpoint('sm') {
+  @include mix.breakpoint("sm") {
     flex-direction: row;
     align-items: stretch;
     width: 100%;
