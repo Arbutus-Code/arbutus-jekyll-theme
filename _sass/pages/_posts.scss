@@ -3,7 +3,6 @@
 @use "../utils/functions" as fn;
 @use "../utils/mixins" as mix;
 
-
 .post-article {
   background: vars.$color-white;
   border-radius: vars.$border-radius-lg;
@@ -86,6 +85,7 @@
 .post-featured-image {
   width: 100%;
   height: auto;
+  max-height: 600px;
   object-fit: cover;
   border-radius: vars.$border-radius-lg;
   margin-bottom: 1.5rem;

@@ -1,5 +1,6 @@
 ---
 ---
+
 @use "brand" as brand;
 
 // Utils
@@ -27,14 +28,10 @@
 @use "components/social-links";
 @use "components/team-members";
 @use "components/contact-form";
-@use "components/text_section";
+@use "components/text-section";
 
 // Pages
 @use "pages/home";
-@use "pages/about";
 @use "pages/updates";
 @use "pages/posts";
 @use "pages/error-page";
-
-
-

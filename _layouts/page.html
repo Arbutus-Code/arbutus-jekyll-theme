@@ -26,7 +26,7 @@ layout: default
           {% include social-links.html socials=site.socials heading=section.heading %}
         {%- when "featured_cards" -%}
           {% include cards.html title=section.title cards=section.cards %}
-        {%- when "text_section" -%}
+        {%- when "text-section" -%}
           {% include text-section.html heading=section.heading text=section.text %}
         {%- when "image" -%}
           {% include image.html src=section.image alt=section.image_alt class="split-section__img" caption=section.caption %}

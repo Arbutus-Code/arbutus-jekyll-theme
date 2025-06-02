@@ -34,7 +34,7 @@ body {
   font-family: vars.$font-family-base;
   line-height: vars.$line-height-base;
   color: vars.$color-gray-900;
-  @include typography.responsive-type(1rem, 1.0625rem, 1.125rem);
+  @include typography.responsive-type(1rem, 1.0625rem, 1.25rem);
 }
 
 small {

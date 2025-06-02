@@ -1,34 +1,39 @@
-@use "../utils/variables" as vars;
 @use "../utils/functions" as fn;
 @use "../utils/mixins" as mix;
+@use "../utils/variables" as vars;
 
 .text-section {
   padding: fn.spacing(6) 0;
-  
+
   &__heading {
     margin-bottom: fn.spacing(4);
     text-align: center;
   }
-  
+
   &__body {
     max-width: 70ch;
     margin: 0 auto;
-    
-    p, ul, ol {
-      font-size: vars.$font-size-base;
+
+    p,
+    ul,
+    ol {
       margin-bottom: fn.spacing(4);
-      
+
       &:last-child {
         margin-bottom: 0;
       }
     }
-    
-    h3, h4, h5, h6 {
+
+    h3,
+    h4,
+    h5,
+    h6 {
       margin-top: fn.spacing(6);
       margin-bottom: fn.spacing(3);
     }
-    
-    ul, ol {
+
+    ul,
+    ol {
       padding-left: fn.spacing(5);
     }
   }

@@ -1,4 +1,6 @@
+@use "../utils/functions" as fn;
 @use "../utils/mixins" as mix;
+@use "../utils/variables" as vars;
 
 .image-caption {
   font-size: 1.25rem;
@@ -33,7 +35,6 @@
     }
     .split-section__text {
       margin-top: 1rem;
-      font-size: vars.$font-size-base;
       line-height: 1.6;
       min-width: 0;
       word-break: break-word;
@@ -42,7 +43,7 @@
   }
 
   // At md and up: allow left/right variants
-  @include mix.breakpoint('md') {
+  @include mix.breakpoint("md") {
     flex-direction: row;
     align-items: flex-start;
     &--left {
@@ -61,4 +62,3 @@
     }
   }
 }
-
