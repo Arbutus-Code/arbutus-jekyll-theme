@@ -16,7 +16,7 @@ Header Component for Arbutus Code theme
             {% endif %}
         </a>
 
-        {% if site.data.navigation and site.data.navigation.main and site.data.navigation.main.size > 0 %}
+        {% if site.data.navigation and site.data.navigation.main_nav_links and site.data.navigation.main_nav_links.size > 0 %}
         <nav class="nav">
             <button type="button" class="nav__menu-button" aria-label="Toggle navigation" aria-expanded="false">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -27,11 +27,11 @@ Header Component for Arbutus Code theme
             </button>
 
             <ul class="nav__list" id="main-nav">
-                {% for item in site.data.navigation.main %}
+                {% for item in site.data.navigation.main_nav_links %}
                 <li class="nav__item">
-                    <a href="{{ site.baseurl }}{{ item.url }}"
-                       class="nav__link {% if page.url == item.url %}nav__link--active{% endif %}">
-                        {{ item.title }}
+                    <a href="{{ site.baseurl }}{{ item.link }}"
+                       class="nav__link {% if page.url == item.link %}nav__link--active{% endif %}">
+                        {{ item.name }}
                     </a>
                 </li>
                 {% endfor %}
