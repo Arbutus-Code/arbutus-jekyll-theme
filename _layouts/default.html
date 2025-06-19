@@ -9,8 +9,8 @@
       {% endif %}
       {{ site.title }}</title>
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
-    {% if site.favicons %}
-      {% for favicon in site.favicons %}
+    {% if site.data.favicons %}
+      {% for favicon in site.data.favicons %}
         <link
           rel="{{ favicon.rel }}"{% if favicon.type %} type="{{ favicon.type }}"{% endif %}{% if favicon.sizes %} sizes="{{ favicon.sizes }}"{% endif %}
           href="{{ favicon.href | relative_url }}">
