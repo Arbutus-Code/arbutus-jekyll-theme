@@ -118,6 +118,213 @@ contact:  # Optional contact information for footer
 - Edit `_sass/_brand.scss` to change your color palette.
 - Update navigation in `_data/navigation.yml`.
 
+### Navigation Configuration
+
+Create a `_data/navigation.yml` file with the following structure:
+
+```yaml
+main_nav_links:
+  - name: "About"
+    link: "/about/"
+  - name: "Projects"
+    link: "/projects/"
+  - name: "Contact"
+    link: "/contact/"
+
+footer_nav_links:
+  - name: "Privacy Policy"
+    link: "/privacy/"
+  - name: "Terms"
+    link: "/terms/"
+```
+
+### Social Media Configuration
+
+Add social media links to your `_config.yml`:
+
+```yaml
+socials:
+  - name: "Twitter"
+    url: "https://twitter.com/yourhandle"
+    icon: "twitter"
+  - name: "GitHub"
+    url: "https://github.com/yourusername"
+    icon: "github"
+  - name: "LinkedIn"
+    url: "https://linkedin.com/in/yourprofile"
+    icon: "linkedin"
+```
+
+---
+
+## Components
+
+The theme includes several reusable components that can be used in your pages:
+
+### Cards Component
+
+Display a grid of featured cards with images, icons, or plain content.
+
+```liquid
+{% include cards.html title="Featured Content" cards=page.cards %}
+```
+
+**Parameters:**
+
+- `title` (optional): Section title
+- `cards` (required): Array of card objects
+
+Each card object supports:
+
+- `title` (required): Card title
+- `description` (required): Card description
+- `image` (optional): Image URL
+- `image_alt` (optional): Image alt text
+- `url` (required): Link URL
+- `cta_text` (optional): Button text (defaults to "Learn More")
+- `media_type` (optional): "icon" for icon cards
+- `icon` (required if media_type is "icon"): Heroicon name
+
+### CTA Component
+
+Call-to-action section with optional image and buttons.
+
+```liquid
+{% include cta.html title="Join Us" description="Become a member today!" center_content=true image=image_obj primary_button=btn1 secondary_button=btn2 %}
+```
+
+**Parameters:**
+
+- `title` (required): Title text
+- `description` (required): Description text
+- `center_content` (optional): Boolean to center-align content
+- `image` (optional): Object with `url` and `alt`
+- `primary_button` (optional): Object with `text` and `url`
+- `secondary_button` (optional): Object with `text` and `url`
+
+### Contact Form Component
+
+Web3Forms-powered contact form with hCaptcha.
+
+```liquid
+{% include contact-form.html title="Contact Us" access_key=site.web3forms.access_key %}
+```
+
+**Parameters:**
+
+- `title` (optional): Section title
+- `access_key` (required): Web3Forms API key
+- `subject` (optional): Email subject
+- `hcaptcha_sitekey` (optional): hCaptcha site key
+
+### Contact Form with Socials
+
+Two-column layout combining contact form with social links.
+
+```liquid
+{% include contact-form-socials.html title="Get in Touch" access_key=site.web3forms.access_key socials=site.socials %}
+```
+
+### Hero Component
+
+Large hero section with title, subtitle, and call-to-action.
+
+```liquid
+{% include hero.html hero=page.hero %}
+```
+
+**Hero object structure:**
+
+- `title` (required): Hero title
+- `subtitle` (optional): Hero subtitle
+- `cta` (optional): Object with `text` and `url`
+- `image` (optional): Image URL
+- `image_alt` (optional): Alt text for image
+
+### Split Section Component
+
+Two-column layout with image and text content.
+
+```liquid
+{% include split-section.html image="/path/to/image.jpg" heading="Section Title" text="Content here..." image_position="left" %}
+```
+
+**Parameters:**
+
+- `image` (optional): Image URL
+- `image_alt` (optional): Alt text for image
+- `image_position` (optional): "left" or "right" (default: left)
+- `image_caption` (optional): Image caption
+- `heading` (optional): Section heading
+- `text` (optional): Section text (supports Markdown)
+
+### Team Members Component
+
+Display team member profiles in a grid.
+
+```liquid
+{% include team-members.html heading="Our Team" members=page.team show_images=true %}
+```
+
+**Parameters:**
+
+- `heading` (optional): Section heading
+- `members` (required): Array of member objects
+- `show_images` (optional): Boolean to show member images (default: true)
+
+Each member object supports:
+
+- `name` (required): Member name
+- `title` (optional): Member title
+- `image` (optional): Image URL
+- `bio` (optional): Short bio
+
+### Text Section Component
+
+Simple text content section.
+
+```liquid
+{% include text-section.html heading="About Us" text="Your content here..." %}
+```
+
+**Parameters:**
+
+- `heading` (optional): Section heading
+- `text` (optional): Section text (supports Markdown)
+
+### Image Component
+
+Standalone image with optional caption and attributes.
+
+```liquid
+{% include image.html src="/path/to/image.jpg" alt="Description" caption="Optional caption" width="400" height="300" %}
+```
+
+**Parameters:**
+
+- `src` (required): Image URL
+- `alt` (optional): Alt text
+- `caption` (optional): Caption text
+- `width` (optional): Image width
+- `height` (optional): Image height
+- `class` (optional): Additional CSS classes
+- `aria` (optional): Aria-label for accessibility
+
+### Social Links Component
+
+Display social media links with icons.
+
+```liquid
+{% include social-links.html socials=site.socials class="footer__social" show_titles=false heading="Follow Us" %}
+```
+
+**Parameters:**
+
+- `socials` (optional): Array of social objects (defaults to site.socials)
+- `class` (optional): Extra CSS classes
+- `show_titles` (optional): Boolean to show platform titles (default: true)
+- `heading` (optional): Section heading text
+
 ---
 
 ## Heroicons and Icons in Cards

@@ -1,12 +1,14 @@
 
 {% comment %}
   Global Social Links Component
+  Parameters:
+    - socials: (optional) Array of social media objects with {name, url, icon} (defaults to site.socials)
+    - class: (optional) Extra CSS classes to add to the social-links container
+    - show_titles: (optional) Boolean/string to show platform titles (default: true)
+    - heading: (optional) Section heading text
   Usage:
-    {% include social-links.html socials=site.socials class="footer__social" show_titles=false %}
-  Params:
-    - socials: dictionary of platform:url (required)
-    - class: extra CSS classes (optional)
-    - show_titles: boolean/string, show platform titles (default: true)
+    {% include social-links.html socials=site.socials class="footer__social" show_titles=false heading="Follow Us" %}
+  Note: Uses SVG sprite located at /assets/images/sprites/social-icon-sprite.svg
 {% endcomment %}
 {% assign socials = include.socials | default: site.socials %}
 {% assign extra_class = include.class | default: '' %}

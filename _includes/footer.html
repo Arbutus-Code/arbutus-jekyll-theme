@@ -1,8 +1,9 @@
 {% comment %}
 Footer Component for Arbutus Code theme
-- Uses site.logo (optional), site.title (required), site.contact (optional: address, email, phone)
-- Navigation links: site.data.navigation.footer (array of {title, url})
-- Social links: site.socials (dictionary)
+- Uses site.footer_logo (optional, falls back to site.logo), site.title (required)
+- Contact info: site.contact (optional: address, email, phone)
+- Navigation links: site.data.navigation.footer_nav_links (array of {name, link})
+- Social links: site.socials (array of {name, url, icon})
 - Includes social-links.html for social icons
 - Accessible and responsive by default
 {% endcomment %}

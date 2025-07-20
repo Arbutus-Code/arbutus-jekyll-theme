@@ -1,10 +1,13 @@
 {% comment %}
-  Contact Form Component (Web3Forms + hCaptcha)
+  Contact Form with Social Links Component (Web3Forms + hCaptcha)
+  Combines a contact form with social media links in a two-column layout.
   Parameters:
+  - title: (optional) Section title
   - access_key: (required) Web3Forms API key (from site config)
   - subject: (optional) Email subject (from site config or section)
   - hcaptcha_sitekey: (optional) hCaptcha site key (from site config, default Web3Forms key if not provided)
-  Usage: {% include contact-form.html access_key=site.web3forms.access_key subject=site.web3forms.subject hcaptcha_sitekey=site.web3forms.hcaptcha_sitekey %}
+  - socials: (optional) Array of social media objects with {name, url, icon}
+  Usage: {% include contact-form-socials.html title="Get in Touch" access_key=site.web3forms.access_key subject=site.web3forms.subject hcaptcha_sitekey=site.web3forms.hcaptcha_sitekey socials=site.socials %}
 {% endcomment %}
 <section class="contact-form-section">
   <div class="contact-form-socials">

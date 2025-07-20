@@ -1,10 +1,11 @@
 {% comment %}
   Contact Form Component (Web3Forms + hCaptcha)
   Parameters:
+  - title: (optional) Section title
   - access_key: (required) Web3Forms API key (from site config)
   - subject: (optional) Email subject (from site config or section)
   - hcaptcha_sitekey: (optional) hCaptcha site key (from site config, default Web3Forms key if not provided)
-  Usage: {% include contact-form.html access_key=site.web3forms.access_key subject=site.web3forms.subject hcaptcha_sitekey=site.web3forms.hcaptcha_sitekey %}
+  Usage: {% include contact-form.html title="Contact Us" access_key=site.web3forms.access_key subject=site.web3forms.subject hcaptcha_sitekey=site.web3forms.hcaptcha_sitekey %}
 {% endcomment %}
 <section class="contact-form-section">
   {% if include.title %}
