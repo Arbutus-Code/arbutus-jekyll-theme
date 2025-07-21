@@ -1,11 +1,15 @@
 {% comment %}
 Footer Component for Arbutus Code theme
 - Uses site.footer_logo (optional, falls back to site.logo), site.title (required)
-- Contact info: site.contact (optional: address, email, phone)
+- Contact info: site.contact (optional: address, email, phone) - controlled by site.footer.show_contact (default: true)
 - Navigation links: site.data.navigation.footer_nav_links (array of {name, link})
-- Social links: site.socials (array of {name, url, icon})
-- Includes social-links.html for social icons
+- Social links: Always renders from site.socials (array of {name, url, icon}) - controlled by site.footer.show_social (default: true)
+- Includes social-links.html for social icons (which uses site.socials)
 - Accessible and responsive by default
+
+Footer Display Controls:
+- site.footer.show_contact: true/false (default: true) - Show/hide contact information
+- site.footer.show_social: true/false (default: true) - Show/hide social media links
 {% endcomment %}
 <footer class="footer">
   <div class="footer__container">
@@ -24,7 +28,8 @@ Footer Component for Arbutus Code theme
         {% endif %}
         <div class="footer__brand-info">
           <span class="footer__title">{{ site.title }}</span>
-          {% if site.contact %}
+          {% assign show_contact = site.footer.show_contact | default: true %}
+          {% if site.contact and show_contact %}
             <ul class="footer__contact-list">
               {% if site.contact.address %}
                 <li class="footer__contact-item">{{ site.contact.address }}</li>
@@ -57,8 +62,9 @@ Footer Component for Arbutus Code theme
       {% endif %}
     </div>
     <div class="footer__bottom">
-      {% if site.socials %}
-        {% include social-links.html socials=site.socials class="footer__social" show_titles=false %}
+      {% assign show_social = site.footer.show_social | default: true %}
+      {% if site.socials and show_social %}
+        {% include social-links.html class="footer__social" show_titles=false %}
       {% endif %}
       <div class="footer__copyright">
         <p>&copy; {{ site.time | date: '%Y' }} {{ site.title }}.</p>

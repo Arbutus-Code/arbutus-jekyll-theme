@@ -1,16 +1,15 @@
 
 {% comment %}
   Global Social Links Component
+  Always renders social links from site configuration (site.socials)
   Parameters:
-    - socials: (optional) Array of social media objects with {name, url, icon} (defaults to site.socials)
     - class: (optional) Extra CSS classes to add to the social-links container
     - show_titles: (optional) Boolean/string to show platform titles (default: true)
     - heading: (optional) Section heading text
   Usage:
-    {% include social-links.html socials=site.socials class="footer__social" show_titles=false heading="Follow Us" %}
+    {% include social-links.html class="footer__social" show_titles=false heading="Follow Us" %}
   Note: Uses SVG sprite located at /assets/images/sprites/social-icon-sprite.svg
 {% endcomment %}
-{% assign socials = include.socials | default: site.socials %}
 {% assign extra_class = include.class | default: '' %}
 {% assign show_titles_str = include.show_titles | downcase | strip %}
 {% if show_titles_str == blank %}
@@ -20,14 +19,14 @@
 {% else %}
   {% assign show_titles_bool = true %}
 {% endif %}
-{% if socials %}
+{% if site.socials %}
 <section class="">
   <div class="social-links {{ extra_class }}">
     {% if include.heading %}
       <h2 class="social-links__heading social-links__heading--center">{{ include.heading }}</h2>
     {% endif %}
     <div class="social-links__list">
-      {% for social in socials %}
+      {% for social in site.socials %}
         <div class="social-links__item">
           {% if show_titles_bool %}
             <h4 class="social-links__title">{{ social.name }}</h4>
