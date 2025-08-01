@@ -1,0 +1,35 @@
+{% comment %}
+Hero Component for Arbutus Code theme
+Parameters:
+- hero: (required) Object with fields:
+    - title: (required) Hero title
+    - subtitle: (optional) Hero subtitle
+    - cta: (optional) Object with:
+        - text: (required) Button text
+        - url: (required) Button URL
+    - image: (optional) Image URL
+    - image_alt: (optional) Alt text for image (defaults to title)
+Usage: {% include hero.html hero=page.hero %}
+{% endcomment %}
+{% if include.hero %}
+<section class="hero">
+    <div class="hero__container">
+        <div class="hero__content">
+            <h1 class="hero__title">{{ include.hero.title }}</h1>
+            {% if include.hero.subtitle %}
+            <p class="hero__subtitle">{{ include.hero.subtitle }}</p>
+            {% endif %}
+            {% if include.hero.cta_text and include.hero.cta_url %}
+            <div class="hero__buttons">
+                <button onclick="window.location.href='{{ include.hero.cta_url | relative_url }}'" class="button button--primary">{{ include.hero.cta_text }}</button>
+            </div>
+            {% endif %}
+        </div>
+        {% if include.hero.image %}
+        <div class="hero__media">
+            <img src="{{ include.hero.image }}" alt="{{ include.hero.image_alt | default: include.hero.title }}" class="hero__image">
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endif %}

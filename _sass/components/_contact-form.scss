@@ -1,0 +1,120 @@
+@use "sass:color";
+@use "../utils/functions" as fn;
+@use "../utils/mixins" as mix;
+@use "../utils/variables" as vars;
+
+.contact-form-section {
+  padding: fn.spacing(8) 0;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.contact-form-socials {
+  display: flex;
+  flex-direction: column;
+  gap: fn.spacing(8);
+  justify-content: center;
+  align-items: stretch;
+
+  &__form,
+  &__social {
+    max-width: 100%;
+    width: 100%;
+    flex: none;
+  }
+
+  .contact-form {
+    max-width: 100%;
+  }
+
+  @include mix.breakpoint('lg') {
+    flex-direction: row;
+    align-items: stretch;
+    &__form {
+      flex: 2 1 0%;
+      max-width: 66.666%;
+      width: 100%;
+    }
+    &__social {
+      flex: 1 1 0%;
+      max-width: 33.333%;
+      width: 100%;
+    }
+  }
+}
+
+
+.contact-form {
+  background: vars.$color-white;
+  border-radius: vars.$border-radius-lg;
+  box-shadow: vars.$shadow-lg;
+  max-width: 60rem;
+  margin: 0 auto;
+  width: 100%;
+  padding: fn.spacing(8);
+  display: flex;
+  flex-direction: column;
+  gap: fn.spacing(6);
+
+  &__title {
+    text-align: center;
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: fn.spacing(2);
+}
+
+label {
+  font-weight: vars.$font-weight-medium;
+  color: vars.$color-gray-900;
+  margin-bottom: fn.spacing(1);
+}
+
+input[type="text"], input[type="email"], textarea {
+  border: 1px solid vars.$color-gray-300;
+  border-radius: vars.$border-radius;
+  padding: fn.spacing(3);
+  font-size: vars.$font-size-base;
+  color: vars.$color-gray-900;
+  background: vars.$color-gray-50;
+  transition: border-color 0.2s;
+  resize: vertical;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border-color: vars.$color-primary;
+}
+
+.button {
+  align-self: flex-end;
+}
+
+.form-message {
+  margin-top: fn.spacing(2);
+  font-size: vars.$font-size-base;
+  min-height: 1.5em;
+}
+.form-message--success {
+  color: vars.$color-primary;
+}
+.form-message--error {
+  color: vars.$color-accent-dark;
+}
+
+// hCaptcha widget tweaks
+.h-captcha {
+  margin-top: fn.spacing(2);
+}
+
+@include mix.breakpoint('md') {
+  .contact-form {
+    padding: fn.spacing(4);
+  }
+}

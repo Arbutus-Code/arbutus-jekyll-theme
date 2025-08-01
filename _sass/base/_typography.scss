@@ -1,0 +1,105 @@
+@use "../utils/variables" as vars;
+@use "../utils/functions" as fn;
+@use "../utils/mixins" as mix;
+@use "../utils/typography" as typography;
+
+// Base Typography Styles
+
+h1, .h1 {
+  font-weight: vars.$font-weight-bold;
+  @include typography.responsive-type(2.25rem, 2.5rem, 3rem);
+}
+h2, .h2 {
+  font-weight: vars.$font-weight-bold;
+  @include typography.responsive-type(1.75rem, 2rem, 2.25rem);
+}
+h3, .h3 {
+  font-weight: vars.$font-weight-semibold;
+  @include typography.responsive-type(1.5rem, 1.75rem, 2rem);
+}
+h4, .h4 {
+  font-weight: vars.$font-weight-semibold;
+  @include typography.responsive-type(1.25rem, 1.5rem, 1.75rem);
+}
+h5, .h5 {
+  font-weight: vars.$font-weight-medium;
+  @include typography.responsive-type(1.125rem, 1.25rem, 1.5rem);
+}
+h6, .h6 {
+  font-weight: vars.$font-weight-medium;
+  @include typography.responsive-type(1rem, 1.125rem, 1.25rem);
+}
+
+body {
+  font-family: vars.$font-family-base;
+  line-height: vars.$line-height-base;
+  color: vars.$color-gray-900;
+  @include typography.responsive-type(1rem, 1.0625rem, 1.25rem);
+}
+
+small {
+  font-size: 0.875rem;
+}
+
+p {
+  margin-bottom: fn.spacing(4);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+a {
+  color: vars.$color-primary;
+  text-decoration: none;
+  @include mix.transition(color);
+
+  &:hover {
+    color: vars.$color-primary-dark;
+  }
+}
+
+strong, b {
+  font-weight: vars.$font-weight-bold;
+}
+
+em, i {
+  font-style: italic;
+}
+
+// small font-size now handled above with rem
+
+blockquote {
+  border-left: 4px solid vars.$color-primary;
+  margin-left: 0;
+  padding-left: fn.spacing(4);
+  font-style: italic;
+  color: vars.$color-gray-600;
+}
+
+code {
+  font-family: monospace;
+  background: vars.$color-gray-100;
+  padding: 0.2em 0.4em;
+  border-radius: vars.$border-radius-sm;
+}
+
+pre {
+  background: vars.$color-gray-100;
+  padding: fn.spacing(4);
+  border-radius: vars.$border-radius;
+  overflow-x: auto;
+
+  code {
+    background: none;
+    padding: 0;
+    border-radius: 0;
+  }
+}
+
+ul, ol {
+  margin-bottom: fn.spacing(4);
+  padding-left: fn.spacing(5);
+}
+
+

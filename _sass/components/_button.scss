@@ -1,0 +1,83 @@
+@use "sass:color";
+@use "../utils/variables" as vars;
+@use "../utils/functions" as fn;
+@use "../utils/mixins" as mix;
+
+// Button Styles
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: fn.spacing(3) fn.spacing(6);
+  border-radius: vars.$border-radius;
+  font-weight: vars.$font-weight-medium;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  @include mix.transition(transform, box-shadow, background-color, color);
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  &:focus {
+    @include mix.focus-ring(vars.$color-primary);
+  }
+
+  // Variants
+  &--primary {
+    background-color: vars.$color-primary;
+    color: vars.$color-white;
+
+    &:hover {
+      background-color: vars.$color-primary-dark;
+    }
+  }
+
+  &--secondary {
+    background-color: vars.$color-accent-dark;
+    color: vars.$color-white;
+
+    &:hover {
+      background-color: color.scale(vars.$color-accent-dark, $lightness: -10%);
+    }
+  }
+
+  &--outline {
+    background-color: transparent;
+    border: 2px solid currentColor;
+    color: vars.$color-primary;
+
+    &:hover {
+      background-color: vars.$color-primary;
+      color: vars.$color-white;
+    }
+  }
+
+  // Sizes
+  &--sm {
+    padding: fn.spacing(2) fn.spacing(4);
+    font-size: 0.875rem;
+  }
+
+  &--lg {
+    padding: fn.spacing(4) fn.spacing(8);
+    font-size: 1.125rem;
+  }
+
+  // States
+  &:disabled,
+  &--disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  // Icon Support
+  svg {
+    width: 1.25em;
+    height: 1.25em;
+    margin-right: fn.spacing(2);
+  }
+}

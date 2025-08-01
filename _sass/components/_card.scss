@@ -1,0 +1,138 @@
+@use "sass:color";
+@use "../utils/variables" as vars;
+@use "../utils/functions" as fn;
+@use "../utils/mixins" as mix;
+
+// Responsive Card Grid
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: fn.spacing(6);
+  width: 100%;
+
+  @include mix.breakpoint("md") {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @include mix.breakpoint("lg") {
+    grid-template-columns: repeat(3, 1fr);
+    gap: fn.spacing(7);
+  }
+  @include mix.breakpoint("xl") {
+    gap: fn.spacing(8);
+  }
+}
+
+.card {
+  background: vars.$color-white;
+  border-radius: vars.$border-radius-lg;
+  box-shadow: vars.$shadow-lg;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  height: 100%;
+  @include mix.transition(transform, box-shadow);
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: vars.$shadow-xl;
+  }
+
+  // Media: image variant
+  &__media {
+    width: 100%;
+    aspect-ratio: 3/2;
+    background: vars.$color-gray-100;
+    position: relative;
+    overflow: hidden;
+    display: block;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      @include mix.transition(transform);
+    }
+  }
+  &:hover &__media img {
+    transform: scale(1.06);
+  }
+
+  // Media: icon variant
+  &__media--icon {
+    aspect-ratio: unset;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    .card__icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      overflow: hidden;
+      width: 3rem;
+      height: 3rem;
+      img,
+      svg {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+        margin: 0;
+        transition: transform 0.2s;
+      }
+      svg {
+        stroke: vars.$color-primary;
+        fill: none;
+      }
+    }
+  }
+  &:hover &__media--icon img,
+  &:hover &__media--icon svg {
+    transform: scale(1.12) rotate(2deg);
+  }
+
+  // Card Content
+  &__content {
+    padding: fn.spacing(6);
+    padding-bottom: fn.spacing(3);
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  &:not(:has(.card__media)) .card__content {
+    margin-top: fn.spacing(4);
+  }
+
+  &__title {
+    font-size: 1.25rem;
+    font-weight: vars.$font-weight-bold;
+    margin-bottom: fn.spacing(3);
+    color: vars.$color-gray-900;
+    line-height: 1.15;
+    text-align: center;
+    word-break: break-word;
+  }
+  &__description {
+    flex: 1 1 auto;
+    margin-bottom: fn.spacing(3);
+    color: vars.$color-gray-700;
+    text-align: center;
+  }
+  .button {
+    margin-top: fn.spacing(3);
+    align-self: stretch;
+    position: relative;
+    z-index: 1;
+  }
+}

@@ -1,0 +1,50 @@
+---
+layout: default
+---
+<main class="about">
+  {%- assign has_hero = false -%}
+  {%- if page.sections -%}
+    {%- for section in page.sections -%}
+      {%- if section.type == "hero" -%}
+        {%- assign has_hero = true -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+  {%- unless has_hero -%}
+    <h1 class="page-title text-center">{{ page.title }}</h1>
+  {%- endunless -%}
+  {%- if page.sections -%}
+    {%- for section in page.sections -%}
+      {%- case section.type -%}
+        {%- when "hero" -%}
+          {% include hero.html hero=section %}
+        {%- when "split" -%}
+          {% include split-section.html image=section.image image_alt=section.image_alt image_position=section.image_position heading=section.heading text=section.text image_caption=section.image_caption %}
+        {%- when "team" -%}
+          {% include team-members.html heading=section.heading show_images=section.show_images members=section.members %}
+        {%- when "social_links" -%}
+          {% include social-links.html socials=site.socials heading=section.heading %}
+        {%- when "featured_cards" -%}
+          {% include cards.html title=section.title cards=section.cards %}
+        {%- when "text-section" -%}
+          {% include text-section.html heading=section.heading text=section.text %}
+        {%- when "image" -%}
+          {% include image.html src=section.image alt=section.image_alt class="split-section__img" caption=section.caption %}
+        {%- when "cta" -%}
+          {% include cta.html title=section.title description=section.description center_content=section.center_content image_url=section.image_url image_alt=section.image_alt primary_button_text=section.primary_button_text primary_button_url=section.primary_button_url secondary_button_text=section.secondary_button_text secondary_button_url=section.secondary_button_url %}
+        {%- when "contact_form" -%}
+          {% assign access_key = section.access_key | default: site.web3forms.access_key %}
+          {% assign subject = section.subject | default: site.web3forms.subject %}
+          {% assign hcaptcha_sitekey = section.hcaptcha_sitekey | default: site.web3forms.hcaptcha_sitekey %}
+          {% include contact-form.html access_key=access_key subject=subject hcaptcha_sitekey=hcaptcha_sitekey title=section.title %}
+        {%- when "contact_form_socials" -%}
+          {% assign access_key = section.access_key | default: site.web3forms.access_key %}
+          {% assign subject = section.subject | default: site.web3forms.subject %}
+          {% assign hcaptcha_sitekey = section.hcaptcha_sitekey | default: site.web3forms.hcaptcha_sitekey %}
+          {% include contact-form-socials.html access_key=access_key subject=subject hcaptcha_sitekey=hcaptcha_sitekey title=section.title show_titles=section.show_titles heading=section.heading %}
+      {%- else -%}
+      <!-- Unknown section type -->
+      {%- endcase -%}
+    {%- endfor -%}
+  {%- endif -%}
+</main>

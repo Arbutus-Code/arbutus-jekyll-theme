@@ -1,0 +1,47 @@
+{% comment %}
+Call to Action (CTA) Component
+Parameters for this include:
+- title: (required) Title text
+- description: (required) Description text
+- center_content: (optional) Boolean to center-align content. Adds card--center and button-group--center classes if true.
+- image_url: (optional) Image URL
+- image_alt: (optional) Alt text for image
+- primary_button_text: (optional) Primary button text
+- primary_button_url: (optional) Primary button URL
+- secondary_button_text: (optional) Secondary button text
+- secondary_button_url: (optional) Secondary button URL
+
+Usage:
+  {% include cta.html title="Join Us" description="Become a member today!" center_content=true image_url="/path/to/image.jpg" image_alt="Alt text" primary_button_text="Click Me" primary_button_url="/link" %}
+{% endcomment %}
+
+<section class="cta-section container">
+    <div class="card card--featured{% if include.center_content %} card--center{% endif %}">
+            <div class="card__content">
+                <h2 class="card__title">{{ include.title }}</h2>
+                {% if include.image_url %}
+                    <div class="card__media--contained">
+                        <img
+                            src="{{ include.image_url | relative_url }}"
+                            alt="{{ include.image_alt }}"
+                        >
+                    </div>
+                {% endif %}
+                <p class="card__description">{{ include.description }}</p>
+                <div class="button-group{% if include.center_content %} button-group--center{% endif %}">
+                    {% if include.primary_button_text and include.primary_button_url %}
+                    <button onclick="window.location.href='{{ include.primary_button_url | relative_url }}'" class="button button--primary">
+                        {{ include.primary_button_text }}
+                    </button>
+                    {% endif %}
+
+                    {% if include.secondary_button_text and include.secondary_button_url %}
+                    <button onclick="window.location.href='{{ include.secondary_button_url | relative_url }}'" class="button button--outline">
+                        {{ include.secondary_button_text }}
+                    </button>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

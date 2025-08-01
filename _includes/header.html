@@ -1,0 +1,43 @@
+{% comment %}
+Header Component for Arbutus Code theme
+- Uses site.logo (optional), site.title (required)
+- Navigation links: site.data.navigation.main_nav_links (array of {name, link})
+- Parameter: include.show_title (optional, defaults to true)
+- Accessible and responsive by default
+- Mobile menu with hamburger button for navigation
+{% endcomment %}
+<header class="header">
+    <div class="header__container">
+        <a href="{{ '/' | relative_url }}" class="header__logo">
+            {% if site.logo %}
+            <img src="{{ site.logo | relative_url }}" alt="{{ site.title }}">
+            {% endif %}
+            {% if include.show_title != false and site.title %}
+                <span>{{ site.title }}</span>
+            {% endif %}
+        </a>
+
+        {% if site.data.navigation and site.data.navigation.main_nav_links and site.data.navigation.main_nav_links.size > 0 %}
+        <nav class="nav">
+            <button type="button" class="nav__menu-button" aria-label="Toggle navigation" aria-expanded="false">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+
+            <ul class="nav__list" id="main-nav">
+                {% for item in site.data.navigation.main_nav_links %}
+                <li class="nav__item">
+                    <a href="{{ site.baseurl }}{{ item.link }}"
+                       class="nav__link {% if page.url == item.link %}nav__link--active{% endif %}">
+                        {{ item.name }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </nav>
+        {% endif %}
+    </div>
+</header>

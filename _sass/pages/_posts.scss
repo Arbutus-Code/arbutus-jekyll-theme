@@ -1,0 +1,135 @@
+@use "sass:color";
+@use "../utils/variables" as vars;
+@use "../utils/functions" as fn;
+@use "../utils/mixins" as mix;
+
+.post-article {
+  background: vars.$color-white;
+  border-radius: vars.$border-radius-lg;
+  box-shadow: 0 4px 24px -8px vars.$color-gray-200;
+  padding: 2.5rem 2.5rem 2rem 2.5rem;
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid vars.$color-gray-200;
+}
+
+.post-article h1 {
+  margin-top: 0;
+  font-size: 2.5rem;
+}
+
+.post-article .meta {
+  color: vars.$color-gray-500;
+  font-size: 1.1rem;
+  margin-bottom: 1.25rem;
+}
+
+.post-tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  padding: 0;
+  margin-bottom: 1.5rem;
+}
+
+.post-tags li {
+  margin: 0;
+}
+
+.tag-link {
+  display: inline-block;
+  padding: 0.3em 0.85em;
+  border-radius: 2em;
+  background: vars.$color-gray-100;
+  color: vars.$color-primary;
+  text-decoration: none;
+  font-size: 1rem;
+  border: 1px solid transparent;
+  transition: background 0.2s, color 0.2s;
+}
+
+.tag-link.active,
+.tag-link:focus,
+.tag-link:hover {
+  background: vars.$color-primary;
+  color: #fff;
+  border-color: vars.$color-primary;
+  outline: none;
+}
+
+.post-content {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.post-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.post-nav a {
+  color: vars.$color-primary;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.post-nav a:hover {
+  color: vars.$color-primary-dark;
+  text-decoration: underline;
+}
+
+.post-featured-image {
+  width: 100%;
+  height: auto;
+  max-height: 600px;
+  object-fit: cover;
+  border-radius: vars.$border-radius-lg;
+  margin-bottom: 1.5rem;
+}
+
+.related-posts {
+  margin-top: 3rem;
+}
+
+.related-posts h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.related-posts .post-list.related {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.related-posts .post-card {
+  background: vars.$color-gray-50;
+  border-radius: vars.$border-radius;
+  box-shadow: 0 2px 8px -4px vars.$color-gray-200;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid vars.$color-gray-100;
+}
+
+.related-posts .post-card h3 {
+  margin-top: 0;
+  font-size: 1.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.related-posts .post-card .meta {
+  color: vars.$color-gray-500;
+  font-size: 0.95rem;
+  margin-bottom: 0.75rem;
+}
+
+.related-posts .post-card .excerpt {
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+}

@@ -1,0 +1,60 @@
+{% comment %}
+Parameters for this include:
+- title: (optional) Section title. Defaults to "Featured Cards" if not provided.
+- cards: (required) Array of card objects. No fallback to site.data.cards; you must provide this parameter.
+  Each card object supports:
+    - title: (required) Card title
+    - description: (required) Card description
+    - image: (optional) Image URL
+    - image_alt: (optional) Image alt text. Defaults to card title if not provided.
+    - url: (required) Link URL
+    - cta_text: (optional) Call-to-action button text. Defaults to "Learn More".
+    - media_type: (optional) String for BEM modifier classes, e.g. 'video', 'audio'. Adds card--{media_type} and card__media--{media_type} classes.
+
+Usage:
+  {% include cards.html title="Section Title" cards=page.cards %}
+  <!-- 'cards' parameter is required -->
+{% endcomment %}
+
+{% assign cards = include.cards %}
+
+{% if include.cards %}
+  <section class="featured-content container">
+    {% if include.title %}
+      <h2 class="section-title">{{ include.title }}</h2>
+    {% endif %}
+    <div class="card-grid">
+      {% for card in cards %}
+        <article class="card{% if card.media_type %} card--{{ card.media_type }}{% endif %}">
+          {% comment %} Render icon sprite if icon is set, else fallback to image, else fallback to question mark {% endcomment %}
+          {% if card.media_type == "icon" and card.icon %}
+            <div class="card__media card__media--icon">
+              <div class="card__icon">
+                <svg class="icon" aria-hidden="true" focusable="false">
+                  <use xlink:href="{{ '/assets/media/sprites/heroicons-outline-sprite.svg#' | append: card.icon | relative_url }}"></use>
+                </svg>
+              </div>
+            </div>
+          {% elsif card.image %}
+            <div class="card__media{% if card.media_type %} card__media--{{ card.media_type }}{% endif %}">
+              <img src="{{ card.image }}" alt="{{ card.image_alt | default: card.title }}">
+            </div>
+          {% elsif card.media_type == "icon" %}
+            <div class="card__media card__media--icon">
+              <div class="card__icon">
+                <span class="card__icon-fallback" aria-hidden="true">?</span>
+              </div>
+            </div>
+          {% endif %}
+          <div class="card__content">
+            <h3 class="card__title">{{ card.title }}</h3>
+            <p class="card__description">{{ card.description }}</p>
+            <button onclick="window.location.href='{{ card.url | default: '#' | relative_url }}'" class="button button--primary">
+              {{ card.cta_text | default: "Learn More" }}
+            </button>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}

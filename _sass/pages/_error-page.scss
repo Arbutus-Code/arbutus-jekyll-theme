@@ -1,0 +1,39 @@
+@use "../utils/variables" as vars;
+@use "../utils/functions" as fn;
+@use "../utils/mixins" as mix;
+
+.error-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  padding: fn.spacing(8) 0;
+
+  &__content {
+    background: vars.$color-white;
+    border-radius: vars.$border-radius-lg;
+    box-shadow: vars.$shadow-lg;
+    padding: fn.spacing(8) fn.spacing(6);
+    text-align: center;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  &__title {
+    font-size: 5rem;
+    font-weight: bold;
+    color: vars.$color-primary;
+    margin-bottom: fn.spacing(2);
+    line-height: 1;
+  }
+
+  &__message {
+    font-size: 1.25rem;
+    color: vars.$color-gray-700;
+    margin-bottom: fn.spacing(6);
+  }
+
+  .button {
+    margin-top: fn.spacing(2);
+  }
+}

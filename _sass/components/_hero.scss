@@ -1,0 +1,89 @@
+@use "sass:color";
+@use "../utils/variables" as vars;
+@use "../utils/functions" as fn;
+@use "../utils/mixins" as mix;
+
+// Hero Section Styles
+
+.hero {
+
+  // Container
+  &__container {
+    @include mix.container;
+    background: linear-gradient(45deg, vars.$color-primary-dark, color.scale(vars.$color-primary-dark, $lightness: 20%));
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: fn.spacing(8);
+    padding: fn.spacing(10) fn.spacing(4);
+    position: relative;
+    z-index: fn.z('base');
+
+    @include mix.breakpoint('md') {
+      grid-template-columns: 1fr 1fr;
+      gap: fn.spacing(12);
+      padding: fn.spacing(12) fn.spacing(4);
+      align-items: center;
+    }
+  }
+
+  // Content
+  &__content {
+    max-width: 37.5rem;
+    margin: 0 auto;
+    padding: fn.spacing(5) fn.spacing(5);
+
+    @include mix.breakpoint('md') {
+      max-width: none;
+    }
+  }
+
+  &__title {
+    @include mix.heading('h1');
+    margin-bottom: fn.spacing(4);
+    font-size: 2.5rem;
+    line-height: 1.2;
+
+    @include mix.breakpoint('md') {
+      font-size: 3.5rem;
+    }
+  }
+
+  &__subtitle {
+    font-size: vars.$font-size-base;
+    line-height: 1.6;
+    margin-bottom: fn.spacing(6);
+    color: color.scale(vars.$color-white, $alpha: -10%);
+  }
+
+  // Buttons
+  &__buttons {
+    @include mix.flex(row, flex-start, center);
+    gap: fn.spacing(4);
+  }
+
+  &__buttons button {
+    background-color: vars.$color-white;
+    color: vars.$color-primary-dark;
+    border: 2px solid vars.$color-white;
+  }
+
+  &__buttons button:hover {
+    background-color: vars.$color-primary-dark;
+    color: vars.$color-white;
+    border: 2px solid vars.$color-white;
+  }
+
+  // Media
+  &__media {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+
+  &__image {
+    max-width: 15rem;
+    height: auto;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15));
+  }
+}

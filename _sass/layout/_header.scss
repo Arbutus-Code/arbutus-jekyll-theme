@@ -1,0 +1,42 @@
+@use "sass:color";
+@use "../utils/variables" as vars;
+@use "../utils/functions" as fn;
+@use "../utils/mixins" as mix;
+
+// Header Styles
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: fn.z('sticky');
+  background-color: color.scale(vars.$color-white, $alpha: -10%);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid vars.$color-gray-200;
+  @include mix.transition(transform);
+
+  &--hidden {
+    transform: translateY(-100%);
+  }
+
+  // Container
+  &__container {
+    @include mix.container;
+    @include mix.flex(row, space-between, center);
+    height: vars.$header-height;
+  }
+
+  // Logo
+  &__logo {
+    @include mix.flex(row, flex-start, center);
+    gap: fn.spacing(2);
+    font-weight: vars.$font-weight-bold;
+    color: vars.$color-gray-900;
+    text-decoration: none;
+
+    img {
+      height: 3rem;
+      width: auto;
+    }
+  }
+}

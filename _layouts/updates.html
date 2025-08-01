@@ -1,0 +1,66 @@
+---
+# Layout: Updates (News Feed Landing Page)
+# Brand-agnostic, modular, accessible, and responsive
+layout: default
+---
+{% comment %}
+  This layout displays a news/updates feed using site.posts.
+  Uses atomic components and theme variables for styling.
+  Inherits header/footer/scripts from default.html
+{% endcomment %}
+
+<main id="main-content" class="container updates-layout">
+  <section class="hero">
+    <h1>{{ page.title | default: 'Updates' }}</h1>
+    {% if page.description %}<p class="description">{{ page.description }}</p>{% endif %}
+  </section>
+  {% assign all_tags = site.posts | map: 'tags' | join: ',' | split: ',' | uniq | sort %}
+  <nav class="tags-nav" aria-label="Filter updates by tag">
+    <ul class="tags-list">
+      <li><a href="#" class="tag-link" id="tag-all" data-tag="all">All</a></li>
+      {% for tag in all_tags %}
+        {% unless tag == '' %}
+        <li><a href="#{{ tag | slugify }}" class="tag-link" data-tag="{{ tag | slugify }}">#{{ tag }}</a></li>
+        {% endunless %}
+      {% endfor %}
+    </ul>
+  </nav>
+  <section class="updates-feed">
+    {% if site.posts.size > 0 %}
+      <ul class="post-list">
+        {% for post in site.posts %}
+          {% if post.tags %}
+            {% assign post_tags = post.tags %}
+            {% if post_tags.size == 1 %}
+              {% assign post_tags = post_tags | join: ',' | split: ',' %}
+            {% endif %}
+            <li class="post-card" data-tags="{% for tag in post.tags %}{{ tag | slugify }} {% endfor %}">
+              
+          {% else %}
+            <li class="post-card" data-tags="">
+          {% endif %}
+            <article>
+              <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+              <p class="meta">{{ post.date | date: '%B %d, %Y' }}</p>
+              {% if post.excerpt %}
+                <p class="excerpt">{{ post.excerpt }}</p>
+              {% endif %}
+              {% if post.tags %}
+                <ul class="post-tags">
+                  {% for tag in post.tags %}
+                    <li><a href="#{{ tag | slugify }}" class="tag-link" data-tag="{{ tag | slugify }}">#{{ tag }}</a></li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </article>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No updates available yet. Please check back soon!</p>
+    {% endif %}
+  </section>
+</main>
+<script src="{{ '/assets/js/updates-filter.js' | relative_url }}"></script>
+</body>
+</html>

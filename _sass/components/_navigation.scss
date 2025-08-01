@@ -1,0 +1,115 @@
+@use "sass:color";
+@use "../utils/variables" as vars;
+@use "../utils/functions" as fn;
+@use "../utils/mixins" as mix;
+
+// Navigation component styles
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 1;
+
+  // Mobile menu button
+  &__menu-button {
+    display: block;
+    background: none;
+    border: none;
+    color: vars.$color-gray-600;
+    cursor: pointer;
+    padding: fn.spacing(2);
+    margin: -#{fn.spacing(2)};
+
+    svg {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+
+    &:hover {
+      color: vars.$color-gray-900;
+    }
+
+    @include mix.breakpoint('md') {
+      display: none;
+    }
+  }
+
+  // Navigation list
+  &__list {
+    display: none;
+    list-style: none;
+    font-size: 1.25rem;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+
+    &--mobile-visible {
+      display: flex;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      background: vars.$color-white;
+      padding: fn.spacing(4);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+
+      .nav__item + .nav__item {
+        margin-top: fn.spacing(2);
+      }
+
+      .nav__link {
+        display: block;
+        padding: fn.spacing(1) fn.spacing(2);
+      }
+    }
+
+    @include mix.breakpoint('md') {
+      display: flex;
+      align-items: center;
+      gap: fn.spacing(6);
+      position: static;
+      padding: 0;
+      box-shadow: none;
+
+      &--mobile-visible {
+        position: static;
+        padding: 0;
+        box-shadow: none;
+
+        .nav__item + .nav__item {
+          margin-top: 0;
+        }
+
+        .nav__link {
+          padding: 0;
+        }
+      }
+    }
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+  }
+
+  &__link {
+    color: vars.$color-gray-900;
+    text-decoration: none;
+    font-weight: vars.$font-weight-medium;
+    @include mix.transition(color);
+    padding: fn.spacing(1) fn.spacing(2);
+    border-radius: vars.$border-radius;
+
+    &:hover,
+    &:focus {
+      color: vars.$color-primary;
+      background-color: rgba(vars.$color-primary, 0.1);
+    }
+
+    &--active {
+      color: vars.$color-primary;
+      background-color: rgba(vars.$color-primary, 0.1);
+    }
+  }
+}

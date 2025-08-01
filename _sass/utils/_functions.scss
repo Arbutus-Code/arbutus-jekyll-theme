@@ -1,0 +1,45 @@
+@use "sass:map";
+@use "sass:color";
+@use "sass:math";
+@use "variables" as vars;
+
+// Get spacing value
+@function spacing($key) {
+  @if map.has-key(vars.$spacing-scale, $key) {
+    @return map.get(vars.$spacing-scale, $key);
+  }
+  @warn "Invalid spacing key: #{$key}. Available keys are: #{map.keys(vars.$spacing-scale)}";
+  @return null;
+}
+
+// Get z-index value
+@function z($key) {
+  @if map.has-key(vars.$z-index, $key) {
+    @return map.get(vars.$z-index, $key);
+  }
+  @warn "Invalid z-index key: #{$key}. Available keys are: #{map.keys(vars.$z-index)}";
+  @return null;
+}
+
+// Color functions
+@function alpha($color, $opacity) {
+  @return color.adjust($color, $alpha: $opacity);
+}
+
+@function darken($color, $percentage) {
+  @return color.mix(black, $color, $percentage);
+}
+
+@function lighten($color, $percentage) {
+  @return color.mix(white, $color, $percentage);
+}
+
+// Convert px to rem
+@function rem($pixels) {
+  @return #{math.div($pixels, 16)}rem;
+}
+
+// Convert px to em
+@function em($pixels, $context: 16) {
+  @return #{math.div($pixels, $context)}em;
+}

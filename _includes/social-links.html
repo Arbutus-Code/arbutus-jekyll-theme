@@ -1,0 +1,44 @@
+
+{% comment %}
+  Global Social Links Component
+  Always renders social links from site configuration (site.socials)
+  Parameters:
+    - class: (optional) Extra CSS classes to add to the social-links container
+    - show_titles: (optional) Boolean/string to show platform titles (default: true)
+    - heading: (optional) Section heading text
+  Usage:
+    {% include social-links.html class="footer__social" show_titles=false heading="Follow Us" %}
+  Note: Uses SVG sprite located at /assets/media/sprites/social-icon-sprite.svg
+{% endcomment %}
+{% assign extra_class = include.class | default: '' %}
+{% assign show_titles_str = include.show_titles | downcase | strip %}
+{% if show_titles_str == blank %}
+  {% assign show_titles_bool = true %}
+{% elsif show_titles_str == "false" %}
+  {% assign show_titles_bool = false %}
+{% else %}
+  {% assign show_titles_bool = true %}
+{% endif %}
+{% if site.socials %}
+<section class="">
+  <div class="social-links {{ extra_class }}">
+    {% if include.heading %}
+      <h2 class="social-links__heading social-links__heading--center">{{ include.heading }}</h2>
+    {% endif %}
+    <div class="social-links__list">
+      {% for social in site.socials %}
+        <div class="social-links__item">
+          {% if show_titles_bool %}
+            <h4 class="social-links__title">{{ social.name }}</h4>
+          {% endif %}
+          <a class="social-links__link" href="{{ social.url }}" target="_blank" rel="noopener" aria-label="{{ social.name }}" title="{{ social.name }}: {{ social.url }}">
+            <svg class="icon" aria-hidden="true" focusable="false">
+              <use xlink:href="{{ '/assets/media/sprites/social-icon-sprite.svg#icon-' | append: social.icon | relative_url }}"></use>
+            </svg>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}

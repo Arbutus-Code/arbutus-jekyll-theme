@@ -1,0 +1,17 @@
+{% comment %}
+Text Section Component
+Parameters:
+- heading: (optional) Section heading
+- text: (optional) Section text (supports Markdown)
+Usage: {% include text-section.html heading=... text=... %}
+{% endcomment %}
+<section class="text-section container">
+  {% if include.heading %}
+    <h2 class="text-section__heading">{{ include.heading }}</h2>
+  {% endif %}
+  {% if include.text %}
+    <div class="text-section__body">
+      {{ include.text | markdownify }}
+    </div>
+  {% endif %}
+</section>

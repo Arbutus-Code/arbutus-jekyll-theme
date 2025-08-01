@@ -1,0 +1,132 @@
+@use "sass:map";
+@use "brand" as brand;
+
+// Re-export brand variables
+$color-primary: brand.$color-primary;
+$color-primary-dark: brand.$color-primary-dark;
+$color-primary-light: brand.$color-primary-light;
+$color-accent-dark: brand.$color-accent-dark;
+
+// Neutral Colors
+$color-white: #ffffff !default;
+$color-black: #000000 !default;
+$color-gray-50: #f8fafc !default;
+$color-gray-100: #f1f5f9 !default;
+$color-gray-200: #e2e8f0 !default;
+$color-gray-300: #cbd5e1 !default;
+$color-gray-400: #94a3b8 !default;
+$color-gray-500: #64748b !default;
+$color-gray-600: #475569 !default;
+$color-gray-700: #334155 !default;
+$color-gray-800: #1e293b !default;
+$color-gray-900: #0f172a !default;
+
+// Spacing Scale
+$spacing-scale: (
+  0: 0,
+  1: 0.25rem,
+  // 4px
+  2: 0.5rem,
+  // 8px
+  3: 0.75rem,
+  // 12px
+  4: 1rem,
+  // 16px
+  5: 1.5rem,
+  // 24px
+  6: 2rem,
+  // 32px
+  7: 2.5rem,
+  // 40px
+  8: 3rem,
+  // 48px
+  10: 4rem,
+  // 64px
+  12: 6rem,
+  // 96px
+) !default;
+
+// Header
+$header-height: 5rem !default;
+
+// Typography
+$font-family-base: "Inter", system-ui, -apple-system, sans-serif !default;
+$font-family-heading: $font-family-base !default;
+$font-size-base: 1.25rem !default;
+$line-height-base: 1.5 !default;
+
+// Font Weights
+$font-weight-normal: 400 !default;
+$font-weight-medium: 500 !default;
+$font-weight-semibold: 600 !default;
+$font-weight-bold: 700 !default;
+$font-weight-extrabold: 800 !default;
+
+// Spacing
+$spacing-unit: 1rem !default;
+$spacing-scale: (
+  0: 0,
+  1: $spacing-unit * 0.25,
+  // 4px
+  2: $spacing-unit * 0.5,
+  // 8px
+  3: $spacing-unit * 0.75,
+  // 12px
+  4: $spacing-unit,
+  // 16px
+  5: $spacing-unit * 1.5,
+  // 24px
+  6: $spacing-unit * 2,
+  // 32px
+  8: $spacing-unit * 3,
+  // 48px
+  10: $spacing-unit * 4,
+  // 64px
+  12: $spacing-unit * 5 // 80px,
+) !default;
+
+// Breakpoints
+$breakpoints: (
+  "sm": 40rem,
+  // 640px
+  "md": 48rem,
+  // 768px
+  "lg": 64rem,
+  // 1024px
+  "xl": 80rem,
+  // 1280px
+  "2xl": 96rem // 1536px,
+) !default;
+
+// Container
+$container-max-width: 75rem !default; // 1200px
+$container-padding: map.get($spacing-scale, 4) !default;
+
+// Border Radius
+$border-radius-sm: 0.25rem !default;
+$border-radius: 0.5rem !default;
+$border-radius-lg: 1rem !default;
+$border-radius-full: 625rem !default; // 9999px
+
+// Box Shadow
+$shadow-sm: 0 0.0625rem 0.125rem 0 rgba(0, 0, 0, 0.05) !default;
+$shadow: 0 0.0625rem 0.1875rem 0 rgba(0, 0, 0, 0.1),
+  0 0.0625rem 0.125rem -0.0625rem rgba(0, 0, 0, 0.1) !default;
+$shadow-md: 0 0.25rem 0.375rem -0.0625rem rgba(0, 0, 0, 0.1),
+  0 0.125rem 0.25rem -0.125rem rgba(0, 0, 0, 0.1) !default;
+$shadow-lg: 0 0.625rem 0.9375rem -0.1875rem rgba(0, 0, 0, 0.1),
+  0 0.25rem 0.375rem -0.25rem rgba(0, 0, 0, 0.1) !default;
+$shadow-xl: 0 1.25rem 1.5625rem -0.3125rem rgba(0, 0, 0, 0.1),
+  0 0.5rem 0.625rem -0.375rem rgba(0, 0, 0, 0.1) !default;
+
+// Z-index
+$z-index: (
+  "negative": -1,
+  "base": 0,
+  "dropdown": 1000,
+  "sticky": 1020,
+  "fixed": 1030,
+  "modal": 1040,
+  "popover": 1050,
+  "tooltip": 1060,
+) !default;
