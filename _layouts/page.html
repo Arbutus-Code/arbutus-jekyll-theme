@@ -31,7 +31,7 @@ layout: default
         {%- when "image" -%}
           {% include image.html src=section.image alt=section.image_alt class="split-section__img" caption=section.caption %}
         {%- when "cta" -%}
-          {% include cta.html title=section.title description=section.description center_content=section.center_content image_url=section.image_url image_alt=section.image_alt primary_button_text=section.primary_button_text primary_button_url=section.primary_button_url secondary_button_text=section.secondary_button_text secondary_button_url=section.secondary_button_url %}
+          {% include cta.html title=section.title description=section.description center_content=section.center_content image_url=section.image_url image_alt=section.image_alt primary_button_text=section.primary_button.text primary_button_url=section.primary_button.url secondary_button_text=section.secondary_button.text secondary_button_url=section.secondary_button.url %}
         {%- when "contact_form" -%}
           {% assign access_key = section.access_key | default: site.web3forms.access_key %}
           {% assign subject = section.subject | default: site.web3forms.subject %}

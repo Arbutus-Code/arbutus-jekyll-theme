@@ -19,9 +19,9 @@ Usage: {% include hero.html hero=page.hero %}
             {% if include.hero.subtitle %}
             <p class="hero__subtitle">{{ include.hero.subtitle }}</p>
             {% endif %}
-            {% if include.hero.cta_text and include.hero.cta_url %}
+            {% if include.hero.cta.text and include.hero.cta.url %}
             <div class="hero__buttons">
-                <button onclick="window.location.href='{{ include.hero.cta_url | relative_url }}'" class="button button--primary">{{ include.hero.cta_text }}</button>
+                <button type="button" onclick="window.location.href='{{ include.hero.cta.url | relative_url }}'" class="button button--primary">{{ include.hero.cta.text }}</button>
             </div>
             {% endif %}
         </div>
